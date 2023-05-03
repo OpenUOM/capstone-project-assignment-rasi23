@@ -27,8 +27,8 @@ const readTeachers = async () => {
     return new Promise((resolve, reject) => {
         knex_db
             .raw(sql)
-            .then((data) => {
-                resolve(data);
+            .then((teachers) => {
+                resolve(teachers);
             })
             .catch((error) => {
                 reject(error);
@@ -110,13 +110,13 @@ const readStudentInfo = async (id) => {
     const sql = `SELECT * FROM student WHERE id = ?`
     return new Promise((resolve, reject) => {
         knex_db
-            .raw(sql, [id])
-            .then((student) => {
-                resolve(student);
-            })
-            .catch((error) => {
-                reject(error);
-            });
+        .raw(sql, [id])
+        .then((student) => {
+            resolve(student);
+        })
+        .catch((error) => {
+            reject(error);
+        });
     });
 }
 
@@ -138,27 +138,27 @@ const updateStudent = async (name, age, hometown, id) => {
     const sql = `UPDATE student SET name=?, age=?, hometown=? WHERE id=?`
     return new Promise((resolve, reject) => {
         knex_db
-            .raw(sql, [name, age, hometown, id])
-            .then(() => {
-                resolve({status: "Successfully updated Student"})
-            })
-            .catch((error) => {
-                reject(error);
-            });
+           .raw(sql, [name, age, hometown, id])
+           .then(() => {
+               resolve({status: "Successfully updated Student"})
+        })
+        .catch((error) => {
+            reject(error);
+        });
     });
-}
+} 
 
 const deleteStudent = async (id) => {
     const sql = `DELETE FROM student WHERE id = ?`
     return new Promise((resolve, reject) => {
         knex_db
-            .raw(sql, [id])
-            .then(() => {
-                resolve({status: "Successfully deleted Student"})
-            })
-            .catch((error) => {
-                reject(error);
-            });
+        .raw(sql, [id])
+        .then(() => {
+            resolve({status: "Successfully deleted Student"})
+        })
+        .catch((error) => {
+            reject(error);
+        });
     });
 }
 
